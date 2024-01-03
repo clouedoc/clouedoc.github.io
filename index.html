@@ -1,1 +1,26 @@
-qsdfqsdfqsdfqsdf
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Page</title>
+</head>
+<body>
+    <p id="output-demo"></p>
+    <script type="text/javascript">
+      function test(window) {
+        let stackLookup = false;
+        const e = new window.Error();
+        window.Object.defineProperty(e, 'stack', {
+            configurable: false,
+            enumerable: false,
+            get: function() {
+                stackLookup = true;
+                return '';
+            }
+        });
+        window.console.debug(e);
+        return stackLookup;
+    }
+    document.getElementById('output-demo').innerHTML = test(window);
+    </script>
+</body>
+</html>
